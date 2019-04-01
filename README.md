@@ -1,9 +1,9 @@
 # koko-mujoco
 
 ## Requirement
-Mujoco1.55
-OpenAI Gym 
-OpenAI Mujoco-py
+* Mujoco1.55
+* OpenAI Gym 
+* OpenAI Mujoco-py
 
 ## Repo structure
 ```bash
@@ -21,8 +21,8 @@ OpenAI Mujoco-py
         ├── __init__.py
         └──  koko_reacher.py
 ```
+# Reference
 
-## Reference
-### https://github.com/openai/gym
-### https://github.com/openai/mujoco-py
-### http://www.mujoco.org/
+* [https://github.com/openai/gym](https://github.com/openai/gym)
+* [https://github.com/openai/mujoco-py](https://github.com/openai/mujoco-py)
+* [http://www.mujoco.org/](http://www.mujoco.org/)
