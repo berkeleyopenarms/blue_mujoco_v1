@@ -12,12 +12,12 @@
 ├── train.py
 ├── assets
 │   ├── koko_full.xml
-│   └── STL files for blue robot
+│   └── STL files
 └── koko_gym
     └── envs
         ├── assets
         │   ├── koko_reacher.xml
-        │   └── STL files for blue robot
+        │   └── STL files
         ├── __init__.py
         └──  koko_reacher.py
 ```
