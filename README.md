@@ -63,7 +63,7 @@ Training loop using random controller. Add your favorite algorithm to train the 
 * simulate.py
 
 
-Runs the Mujoco-py viewer simulator for 5000 time steps. Use this for test run your policy. Use `reacher._step` instead of `reacher.step` when you want to actuate the gripper properly.  
+Runs the Mujoco-py viewer simulator for 5000 time steps. Use this for test run your trained policy. Use `reacher._step` instead of `reacher.step` when you want to actuate the gripper properly.  
 
 ## Reference
 
