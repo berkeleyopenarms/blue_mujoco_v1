@@ -43,7 +43,7 @@ MJCF file for the Blue robot. Actuated gripper installed. Having following actua
         <position ctrllimited="true" kp="5.0" ctrlrange="-1.4 0" joint="left_fingertip_joint" />
     </actuator>
 ```
-Since there are no URDF-ish `<mimic>` tag equivalent exists in MJCF, the grippers (last four actuators) are actuated by a position control that takes the current `robotfinger_actuator_joint` angle as a input (fingerlimb_joint moves positive and fingertip_joint goes negative to make the tips paralell each other) one step later. It shouldn't be a problem if you set the time step for the Mujoco compiler small enough (default 0.01s).
+Since there are no URDF `<mimic>` tag equivalent exists in MJCF, the grippers (last four actuators) are actuated by a position control that takes the current `robotfinger_actuator_joint` angle as a input (`fingerlimb_joint` moves positive and `fingertip_joint` goes negative to make the tips paralell each other) one step later. It shouldn't be a problem if you set the time step for the Mujoco compiler small enough (default 0.01s).
 
 * koko_reacher.py
 
