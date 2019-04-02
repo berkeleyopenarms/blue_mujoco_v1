@@ -48,7 +48,7 @@ Since there are no URDF `<mimic>` tag equivalent exists in MJCF, the grippers (l
 * koko_reacher.py
 
 
-OpenAI Gym environment for Blue. `reacher.step` will take 12 input, that means to control all the joints respectively. `reacher._step` is to control the gripper joints at once using `robotfinger_actuator_joint` as a input. Use your favorite reward signal.
+OpenAI Gym environment for Blue. `reacher.step` will take 1x12 size action array as a input, which means you can control all the joints respectively. Where as, `reacher._step` takes 1x8 size action array. The actuator of the gripper joints cannot be controlled respectively but will be controlled at once using `robotfinger_actuator_joint`'s angle as a position input. You can also set your favorite reward signal in a step function.
 
 * koko_reacher.xml
 
