@@ -11,9 +11,9 @@ class KokoReacherEnv(utils.EzPickle, mujoco_env.MujocoEnv):
         utils.EzPickle.__init__(self)
         mujoco_env.MujocoEnv.__init__(self, os.path.join(os.path.dirname(__file__), "assets", "koko_reacher.xml"), 2)
         self.viewer = self._get_viewer('human')
-        self.action_space_size = self.action_space.shape[0]-4 # four joints for finger is a depandant of finger inertial joint
+        self.action_space_size = self.action_space.shape[0] - 4 # four joints for finger is a dependant of finger inertial joint
         self.gripper_action = np.reshape(self.sim.get_state().qpos[self.action_space_size:self.action_space_size+4], (1,4))
-            
+
     def step(self, a):
         vec = self.get_body_com("robotleftfingertip") - self.get_body_com("target")
         reward_dist = -np.square(2.0*np.linalg.norm(vec))
@@ -59,7 +59,11 @@ class KokoReacherEnv(utils.EzPickle, mujoco_env.MujocoEnv):
         return self._get_obs()
 
     def _get_obs(self):
-        return np.concatenate([self.sim.data.qpos,self.sim.data.qvel,self.get_body_com("robotleftfingertip") - self.get_body_com("target")])
+        return np.concatenate([
+            self.sim.data.qpos,
+            self.sim.data.qvel,
+            self.get_body_com("robotleftfingertip") - self.get_body_com("target")
+        ])
 
     def viewer_setup(self, camera_type='global_cam', camera_select=0):
         if camera_type == 'fixed_cam':
@@ -68,11 +72,11 @@ class KokoReacherEnv(utils.EzPickle, mujoco_env.MujocoEnv):
         elif camera_type == 'global_cam':
             cam_type = 0
         DEFAULT_CAMERA_CONFIG = {
-        'distance': 6.0,
-        'azimuth': 140.0,
-        'elevation': -30.0,
-        'type': cam_type,
-        'fixedcamid': camera_select
+            'distance': 6.0,
+            'azimuth': 140.0,
+            'elevation': -30.0,
+            'type': cam_type,
+            'fixedcamid': camera_select
         }
 
         for key, value in DEFAULT_CAMERA_CONFIG.items():
