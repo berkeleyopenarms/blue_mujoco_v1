@@ -61,11 +61,6 @@ class KokoReacherEnv(utils.EzPickle, mujoco_env.MujocoEnv):
     def _get_obs(self):
         return np.concatenate([self.sim.data.qpos,self.sim.data.qvel,self.get_body_com("robotleftfingertip") - self.get_body_com("target")])
 
-    def random_policy(self):
-        random = self.np_random.uniform(low=-1.0, high=1.0, size=len(self.sim.data.ctrl)-4)
-        random = np.reshape(random,(1,len(self.sim.data.ctrl)-4))
-        return random
-
     def viewer_setup(self, camera_type='global_cam', camera_select=0):
         if camera_type == 'fixed_cam':
             cam_type = const.CAMERA_FIXED

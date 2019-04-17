@@ -28,6 +28,15 @@ def do_rollout(env, policy_fn, max_steps, render=False):
 
     return (rollout_observations, rollout_actions, rollout_returns)
 
+def make_random_policy(env):
+    np_random = env.np_random
+    action_size = len(env.sim.data.ctrl) - 4
+    def random_policy():
+        random = np_random.uniform(low=-1.0, high=1.0, size=action_size)
+        random = np.reshape(random, (1, action_size))
+        return random
+    return random_policy
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--max_timesteps', type=int)
@@ -37,7 +46,7 @@ def main():
 
     max_steps = args.max_timesteps or 2000
 
-    random_controller = env.random_policy
+    random_controller = make_random_policy(env)
 
     for i in range(10):
         rollout_obs, rollout_act, rollout_r = do_rollout(env, random_controller, max_steps, render=True)
