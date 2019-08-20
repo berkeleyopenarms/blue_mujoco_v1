@@ -5,7 +5,7 @@
             <joint damping="0.1" />
         </default>
         <default class="gripper">
-            <joint damping="0.01" />
+            <joint damping="0.1" />
         </default>
     </default>
     <asset>
@@ -110,5 +110,5 @@
         <position ctrllimited="true" kp="1.0" ctrlrange="-1.4 0" joint="right_fingertip_joint" />
         <position ctrllimited="true" kp="1.0" ctrlrange="0 1.4" joint="left_fingerlimb_joint" />
         <position ctrllimited="true" kp="1.0" ctrlrange="-1.4 0" joint="left_fingertip_joint" />
-  </actuator>
+    </actuator>
 </mujoco>

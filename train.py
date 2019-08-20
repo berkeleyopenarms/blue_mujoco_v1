@@ -42,7 +42,6 @@ def main():
     args = parser.parse_args()
 
     env = KokoReacherEnv()
-    print(env.action_space, env.observation_space)
 
     max_steps = args.max_timesteps or 2000
 
