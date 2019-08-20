@@ -12,11 +12,10 @@ class KokoReacherEnv(utils.EzPickle, mujoco_env.MujocoEnv):
         utils.EzPickle.__init__(self)
         mujoco_env.MujocoEnv.__init__(self, os.path.join(os.path.dirname(__file__), "assets", "koko_reacher.xml"), 2)
         self.viewer = self._get_viewer('human')
-        # self.action_space_size = self.action_space.shape[0] - 4 # four joints for finger is a dependant of finger inertial joint
-        # self.gripper_action = np.reshape(self.sim.get_state().qpos[self.action_space_size:self.action_space_size+4], (1,4))
+        # adjust the actuation space
         bounds = self.model.actuator_ctrlrange.copy()
         low, high = bounds.T
-        low, high = low[:-4], high[:-4] # four joints for finger is a dependant of finger inertial joint
+        low, high = low[:-4], high[:-4] # four joints for finger are dependants of the finger inertial joint
         self.action_space = spaces.Box(low=low, high=high, dtype=np.float32)
         self.gripper_action = self.sim.data.qpos[-4:]
         self.init_done = True
@@ -32,8 +31,6 @@ class KokoReacherEnv(utils.EzPickle, mujoco_env.MujocoEnv):
             self.gripper_action = np.ones(4) * a[-1]
             self.gripper_action[1] *= -1
             self.gripper_action[3] *= -1
-            # self.gripper_action = np.array([a[-1],-a[-1],a[-1],-a[-1]])
-            # print(a.shape, self.gripper_action.shape)
             a = np.concatenate((a,self.gripper_action))
 
         self.do_simulation(a, self.frame_skip)
@@ -42,22 +39,6 @@ class KokoReacherEnv(utils.EzPickle, mujoco_env.MujocoEnv):
         info = {'reward_dist':reward_dist,
                 'reward_vel':reward_vel}
         return ob, reward, done, info
-
-    # def _step(self, a):
-    #     vec = self.get_body_com("robotleftfingertip") - self.get_body_com("target")
-    #     reward_dist = -np.square(2.0*np.linalg.norm(vec))
-    #     reward_vel = -np.sqrt(np.square(self.sim.data.qvel).mean())
-    #     reward_ctrl = -np.square(a).sum()/len(self.sim.data.ctrl)
-    #     reward = reward_dist + reward_ctrl
-    #     a = np.concatenate((a,self.gripper_action[:]),1)
-    #     self.do_simulation(a, self.frame_skip)
-    #     ob = self._get_obs()
-    #     gripper_state = ob[self.action_space_size:self.action_space_size+4]
-    #     done = False
-    #     info = {'reward_dist':reward_dist,
-    #             'reward_vel':reward_vel}
-    #     self.gripper_action = np.array([[ob[7],-ob[7],ob[7],-ob[7]]])
-    #     return ob, reward, done, info
 
     def viewer_setup(self):
         self.viewer.cam.trackbodyid = 0

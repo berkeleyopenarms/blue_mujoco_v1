@@ -27,16 +27,11 @@ for i in range(5000):
     target_state.qpos[4] = 0.5*np.sin(i/500)        # elbow_roll_joint
     target_state.qpos[5] = 0.5*np.sin(i/500)        # wrist_lift_joint
     target_state.qpos[6] = 0.5*np.sin(i/500)        # wrist_roll_joint
-    target_state.qpos[7] = 0.5*np.sin(i/300)        # robotfinger_actuator_joint       
+    target_state.qpos[7] = 1.0*np.sin(i/500)        # robotfinger_actuator_joint       
     feedback_cmd = Kp * (target_state.qpos - current_state.qpos)
-    feedback_cmd[8] = current_state.qpos[7]         # right_fingerlimb_joint
-    feedback_cmd[9] = -current_state.qpos[7]        # right_fingertip_joint
-    feedback_cmd[10] = current_state.qpos[7]        # left_fingerlimb_joint
-    feedback_cmd[11] = -current_state.qpos[7]       # left_fingertip_joint 
-    feedback_cmd = np.reshape(feedback_cmd[:12],(1,12)) #12 motor in total exist
     
     #Adding Step to model
-    ob, _, _, _ = reacher.step(a=feedback_cmd) #ob = qpos numpy.ndarray len=12
+    ob, _, _, _ = reacher.step(a=feedback_cmd[:8]) #ob = qpos numpy.ndarray len=8
     reacher.render(mode='human', width=width, height=height)
 
 

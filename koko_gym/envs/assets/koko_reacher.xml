@@ -3,11 +3,9 @@
     <default>
         <default class="arm">
             <joint damping="0.1" />
-            <motor ctrllimited="true" />
         </default>
         <default class="gripper">
             <joint damping="0.01" />
-            <motor ctrllimited="true" />
         </default>
     </default>
     <asset>
@@ -100,17 +98,17 @@
         </body>
     </worldbody>
     <actuator>
-        <motor ctrlrange="-3.0 3.0" gear="7.0" joint="base_roll_joint" />
-        <motor ctrlrange="-3.0 3.0" gear="7.0" joint="shoulder_lift_joint" />
-        <motor ctrlrange="-3.0 3.0" gear="7.0" joint="shoulder_roll_joint" />
-        <motor ctrlrange="-3.0 3.0" gear="7.0" joint="elbow_lift_joint" />
-        <motor ctrlrange="-3.0 3.0" gear="7.0" joint="elbow_roll_joint" />
-        <motor ctrlrange="-2.0 2.0" gear="7.0" joint="wrist_lift_joint" />
-        <motor ctrlrange="-2.0 2.0" gear="7.0" joint="wrist_roll_joint" />
-        <motor ctrllimited="true" ctrlrange="-2.0 2.0" joint="robotfinger_actuator_joint" />
-        <position ctrllimited="true" kp="5.0" ctrlrange="0 1.4" joint="right_fingerlimb_joint" />
-        <position ctrllimited="true" kp="5.0" ctrlrange="-1.4 0" joint="right_fingertip_joint" />
-        <position ctrllimited="true" kp="5.0" ctrlrange="0 1.4" joint="left_fingerlimb_joint" />
-        <position ctrllimited="true" kp="5.0" ctrlrange="-1.4 0" joint="left_fingertip_joint" />
+        <motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="2.0" joint="base_roll_joint" />
+        <motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="2.0" joint="shoulder_lift_joint" />
+        <motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="2.0" joint="shoulder_roll_joint" />
+        <motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="2.0" joint="elbow_lift_joint" />
+        <motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="2.0" joint="elbow_roll_joint" />
+        <motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="2.0" joint="wrist_lift_joint" />
+        <motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="2.0" joint="wrist_roll_joint" />
+        <position ctrllimited="true" ctrlrange="0 1.05" gear="1.0" joint="robotfinger_actuator_joint" />
+        <position ctrllimited="true" kp="1.0" ctrlrange="0 1.4" joint="right_fingerlimb_joint" />
+        <position ctrllimited="true" kp="1.0" ctrlrange="-1.4 0" joint="right_fingertip_joint" />
+        <position ctrllimited="true" kp="1.0" ctrlrange="0 1.4" joint="left_fingerlimb_joint" />
+        <position ctrllimited="true" kp="1.0" ctrlrange="-1.4 0" joint="left_fingertip_joint" />
   </actuator>
 </mujoco>

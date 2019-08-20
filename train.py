@@ -33,7 +33,6 @@ def make_random_policy(env):
     action_size = len(env.sim.data.ctrl) - 4
     def random_policy():
         random = np_random.uniform(low=-1.0, high=1.0, size=action_size)
-        # random = np.reshape(random, (1, action_size))
         return random
     return random_policy
 
