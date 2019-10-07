@@ -43,12 +43,12 @@ MJCF file for the Blue robot. Actuated gripper installed. Having following actua
         <position ctrllimited="true" kp="1.0" ctrlrange="-1.4 0" joint="left_fingertip_joint" />
     </actuator>
 ```
-Since there are no URDF `<mimic>` tag equivalent exists in MJCF, the grippers (last four actuators) are actuated by a position control that takes the current `robotfinger_actuator_joint` angle as a input (`fingerlimb_joint` moves positive and `fingertip_joint` goes negative to make the tips paralell each other).
+Since no URDF `<mimic>` tag equivalent exists in MJCF, the grippers (last four actuators) are actuated by a position controller that takes the current `robotfinger_actuator_joint` angle as an input (`fingerlimb_joint` moves positive and `fingertip_joint` goes negative to make the tips parallel to each other).
 
 * koko_reacher.py
 
 
-OpenAI Gym environment for Blue. `reacher.step` takes 1x8 size action array. The actuator of the gripper joints cannot be controlled respectively but will be controlled at once using `robotfinger_actuator_joint`'s angle as a position input. You can also set your favorite reward signal in a step function.
+OpenAI Gym environment for Blue. `reacher.step` takes 1x8 size action array. The actuator of the gripper joints cannot be controlled respectively but will be controlled at once using `robotfinger_actuator_joint`'s angle as the position input. You can also set your favorite reward signal in a step function.
 
 * koko_reacher.xml
 
