@@ -18,7 +18,7 @@ def do_rollout(env, policy_fn, max_steps, render=False):
         action = policy_fn()
         rollout_observations.append(observation)
         rollout_actions.append(action)
-        observation, reward, done, _ = env._step(action)
+        observation, reward, done, _ = env.step(action)
         steps += 1
         if render:
             env.render()
@@ -33,7 +33,6 @@ def make_random_policy(env):
     action_size = len(env.sim.data.ctrl) - 4
     def random_policy():
         random = np_random.uniform(low=-1.0, high=1.0, size=action_size)
-        random = np.reshape(random, (1, action_size))
         return random
     return random_policy
 
